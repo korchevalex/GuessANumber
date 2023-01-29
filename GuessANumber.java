@@ -9,6 +9,13 @@ public class GuessANumber {
         int level = 1;
         boolean endGame = false;
 
+        boolean turnOnHotColdSystem = false;
+        System.out.println("Use hot/cold?[y/n]");
+        String hotColdChoice = scanner.nextLine().toLowerCase();
+        if (hotColdChoice.equals("y")) {
+            turnOnHotColdSystem = true;
+        }
+
         while (!endGame) {
             System.out.println("Level " + level);
             int computerNumber = random.nextInt(1, randomCeiling);
@@ -45,6 +52,21 @@ public class GuessANumber {
                         System.out.println("Lower!");
                     } else {
                         System.out.println("Higher!");
+                    }
+                    if (turnOnHotColdSystem) {
+                        if (Math.abs(computerNumber - playerNumber) <= 1) {
+                            System.out.println("Practically burning!");
+                        } else if (Math.abs(computerNumber - playerNumber) <= 5) {
+                            System.out.println("Extremely hot!");
+                        } else if (Math.abs(computerNumber - playerNumber) <= 10) {
+                            System.out.println("Very hot!");
+                        } else if (Math.abs(computerNumber - playerNumber) <= 20) {
+                            System.out.println("Hot!");
+                        } else if (Math.abs(computerNumber - playerNumber) <= 50) {
+                            System.out.println("Warm");
+                        } else {
+                            System.out.println("Cold!");
+                        }
                     }
                 } else {
                     System.out.println("Invalid input!");
